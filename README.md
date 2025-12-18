@@ -1,6 +1,6 @@
 # Simple Java Chat Application
 
-![Java](https://img.shields.io/badge/Java-18-blue?logo=java&logoColor=white) ![MIT License](https://img.shields.io/badge/License-MIT-green) ![Socket Programming](https://img.shields.io/badge/Socket_Programming-✓-brightgreen)
+![Java](https://img.shields.io/badge/Java-18-blue?logo=java&logoColor=white) ![Socket Programming](https://img.shields.io/badge/Socket_Programming-✓-brightgreen)
 
 A real-time Java chat application with a graphical user interface (GUI) using sockets.  
 This project includes:
@@ -30,13 +30,13 @@ The application demonstrates core Java concepts such as **socket programming**, 
 ## Screenshots
 
 **Login Screen**  
-![Login Screen](login.png)
+![Login Screen](images/login.png)
 
 **Chat Window**  
-![Chat Window](chat.png)
+![Chat Window](images/chat.png)
 
 **Multiple Clients Messaging**  
-![Multiple Clients](multiple_clients.png)
+![Multiple Clients](images/multiple_clients.png)
 
 ---
 
@@ -58,8 +58,88 @@ The application demonstrates core Java concepts such as **socket programming**, 
 
 ## Installation & Running
 
-1. Clone the repository:
+Clone the repository:
 
 ```bash
 git clone https://github.com/tedacodder/chatapp-using-java.git
 cd chatapp-using-java
+```
+
+
+### Compile the Project
+
+Compile all Java source files:
+
+```bash
+javac -d bin src/server/*.java src/client/*.java src/client/ui/*.java
+```
+
+---
+
+### Start the Server
+
+Run the server backend:
+
+```bash
+java -cp bin server.ServerMain
+```
+
+---
+
+### Start a Client
+
+Launch the client application (Login UI):
+
+```bash
+java -cp bin client.ui.LoginWindow
+```
+
+> Repeat this step to connect multiple clients to the server.
+
+---
+
+## Configuration
+
+- **Default server port:** `5000`
+- The port can be modified in `ChatClient.java` and `Chatserver.java`
+
+---
+
+## Project Structure
+
+```
+src/
+  server/
+    ServerMain
+    ChatServer.java           # Server backend handling multiple clients
+  client/
+    ChatClient.java           # Handles client-side socket communication
+    ClientReaderThread.java   # Reads messages from server in a separate thread
+    ui/
+      LoginWindow.java        # Login GUI
+      ChatWindow.java         # Main chat GUI window
+```
+
+---
+
+## Contributing
+
+Contributions are welcome.
+
+To contribute:
+
+1. Fork the repository
+2. Create your feature branch:
+   ```bash
+   git checkout -b feature/NewFeature
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m "Add new feature"
+   ```
+4. Push to the branch:
+   ```bash
+   git push origin feature/NewFeature
+   ```
+5. Create a Pull Request
+
