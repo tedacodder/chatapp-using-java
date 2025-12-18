@@ -17,9 +17,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Contest-ready polished ChatWindow with animations, hover effects, avatars, smooth scrolling.
- */
+
 public class ChatWindow extends JFrame {
 
     private final JPanel messagesPanel;
@@ -95,7 +93,9 @@ public class ChatWindow extends JFrame {
             }
         };
         messagesPanel.setLayout(new BoxLayout(messagesPanel, BoxLayout.Y_AXIS));
-        messagesPanel.setOpaque(false);
+        messagesPanel.setOpaque(true);
+        messagesPanel.setBackground(WALLPAPER_BG);
+
         messagesPanel.setBorder(new EmptyBorder(8, 8, 8, 8));
 
         scrollPane = new JScrollPane(messagesPanel);
@@ -246,11 +246,18 @@ public class ChatWindow extends JFrame {
 
         messagesPanel.revalidate();
         messagesPanel.repaint();
+        SwingUtilities.invokeLater(() ->
+                scrollPane.getVerticalScrollBar().setValue(
+                        scrollPane.getVerticalScrollBar().getMaximum() - scrollPane.getVerticalScrollBar().getVisibleAmount()
+                )
+        );
+
 
         // Smooth scroll
         SwingUtilities.invokeLater(() -> {
             JScrollBar bar = scrollPane.getVerticalScrollBar();
-            int target = bar.getMaximum();
+            int target = bar.getMaximum() - bar.getVisibleAmount();
+
             Timer timer = new Timer(5, null);
             timer.addActionListener(e -> {
                 int current = bar.getValue();
